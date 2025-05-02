@@ -3,7 +3,7 @@
 A simple and user-friendly online platform where customers can browse ready-made cakes, customize their own cakes (selecting flavors, size, toppings, etc.), and place orders seamlessly.
 The website will have a clear separation between the frontend and backend to ensure scalability, maintainability, and easy future integration with databases and payment gateways.
 
-_______________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________
 
 Day 1 -> Setting up github repo
 
