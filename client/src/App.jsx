@@ -181,7 +181,7 @@ function App(){
       
       <div className='welcome-message'>
         <p>Welcome to Jesmer!</p>
-      </div>``
+      </div>
 
       <section className='hero'>
         <div className='hero-text'>
@@ -228,4 +228,4 @@ function App(){
   ); 
 }
 
-export default App;``
+export default App;
