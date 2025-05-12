@@ -105,6 +105,7 @@ function CartView({ cartItems, onClose }) {
   );
 }
 
+
 function App(){
   const [cartItems, setCartItems] = useState([]);
   const [showCart, setShowCart] = useState(false);
@@ -139,6 +140,7 @@ function App(){
     });
   };
 
+  
   return (
 
     <div className='app-container'>
@@ -194,6 +196,7 @@ function App(){
             <img src='/cakeintro2.jpeg' alt='Hero Cake' />
         </div>
       </section>
+
 
       <section className='review-section'>
         <div className='review-card'>
