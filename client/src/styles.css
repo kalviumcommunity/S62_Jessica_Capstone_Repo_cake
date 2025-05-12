@@ -460,7 +460,7 @@ body{
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    width: 100%;
+    width: 100%; 
     margin-top: 20px;
 }
 
@@ -499,6 +499,75 @@ body{
   
     .add-to-cart {
       width: 100%;
+    }
+
+    .gallery {
+        padding: 3rem 2rem;
+        text-align: center;
+        background-color: #fff5f7;
+    }
+    
+    .gallery h2 {
+        font-size: 2rem;
+        color: #d6336c;
+        margin-bottom: 2rem;
+    }
+    
+    .cake-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+    }
+    
+    .cake-card {
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        width: 300px;
+        height: auto;
+        transition: transform 0.3s ease;
+    }
+    
+    .cake-card:hover {
+        transform: scale(1.05);
+    }
+    
+    .cake-image {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        border-top-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+    
+    .cake-card p {
+        font-size: 1rem;
+        padding: 0.75rem;
+        color: #444;
+    }
+    
+    .cake-detail {
+        padding: 2rem 5%;
+        background-color: #ffe6eb;
+        min-height: 100vh;
+        box-sizing: border-box;
+        flex-direction: column;
+        align-items: center;
+        display: flex;
+    }
+    
+    .back-button {
+        align-self: flex-start;
+        background-color: #222;
+        color: white;
+        padding: 0.6rem 1rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-bottom: 2rem;
+        font-weight: bold;
     }
   }
 
