@@ -1,7 +1,7 @@
 body{
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif, ;
+    font-family: 'Arial', sans-serif ;
     background-color: #fce6e6;
 }
 
@@ -31,9 +31,6 @@ body{
 .logo {
     width: 100px;
     height: 100px;
-    /* object-fit: contain; */
-    /* padding: 10px 0px 700px 10px;
-    margin-right: 10px; */
 }
   
 .search-bar {
@@ -42,12 +39,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    /* margin: 0 500px;
-    padding: 10px 0px 700px 10px; */
-    /* border: 1px solid #444; */
-    /* border-radius: 12px; */
     position: relative;
-    /* box-sizing: border-box; */
 }
   
 .search-input {
@@ -67,7 +59,6 @@ body{
     top: 50%;
     transform: translateY(-50%);
     color: #333;
-    /* padding: 10px 0px 700px 10px; */
 }
   
 
@@ -79,11 +70,7 @@ body{
   
 .icon {
     color: #333;
-    /* position: relative; */
-    /* right: 40px; */
-    /* padding: 10px 0px 730px 10px; */
     cursor: pointer;
-    /* transition: color 0.3s ease; */
 }
   
 .icon:hover {
@@ -289,12 +276,7 @@ body{
     justify-content: center;
     align-items: center;
     border-radius: 12px;
-    /* object-fit: cover; */
     box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    /* position: absolute; */
-    /* top: 50%; */
-    /* left: 50%; */
-    /* transform: translate(-50%, -50%); */
 }
 
 .detail-info {
@@ -478,7 +460,7 @@ body{
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    width: 100%;
+    width: 100%; 
     margin-top: 20px;
 }
 
@@ -499,7 +481,7 @@ body{
 .welcome-message {
     font-family: 'Dancing Script', cursive;
     font-size: 130px;
-    color: #d63384; /* A bakery-friendly pink tone */
+    color: #d63384;
     text-align: center;
     font-weight: bold;
 }
@@ -517,6 +499,75 @@ body{
   
     .add-to-cart {
       width: 100%;
+    }
+
+    .gallery {
+        padding: 3rem 2rem;
+        text-align: center;
+        background-color: #fff5f7;
+    }
+    
+    .gallery h2 {
+        font-size: 2rem;
+        color: #d6336c;
+        margin-bottom: 2rem;
+    }
+    
+    .cake-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+    }
+    
+    .cake-card {
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        width: 300px;
+        height: auto;
+        transition: transform 0.3s ease;
+    }
+    
+    .cake-card:hover {
+        transform: scale(1.05);
+    }
+    
+    .cake-image {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        border-top-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+    
+    .cake-card p {
+        font-size: 1rem;
+        padding: 0.75rem;
+        color: #444;
+    }
+    
+    .cake-detail {
+        padding: 2rem 5%;
+        background-color: #ffe6eb;
+        min-height: 100vh;
+        box-sizing: border-box;
+        flex-direction: column;
+        align-items: center;
+        display: flex;
+    }
+    
+    .back-button {
+        align-self: flex-start;
+        background-color: #222;
+        color: white;
+        padding: 0.6rem 1rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-bottom: 2rem;
+        font-weight: bold;
     }
   }
 
