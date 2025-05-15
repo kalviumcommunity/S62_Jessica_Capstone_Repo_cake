@@ -27,3 +27,6 @@ Day 10 -> High-fid
 
 Day 11 -> Matching design and end state
 
+Frontend Deployed - https://jesmercakesandcookies.netlify.app/
+
+Backend Deployed - https://s62-jessica-capstone-repo-cake.onrender.com
