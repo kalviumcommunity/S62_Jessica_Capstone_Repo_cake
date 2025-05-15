@@ -101,7 +101,11 @@ app.put('/:id', upload.single('image'), async (req, res) => {
         res.status(200).json(updatedCake);
     } catch (err) {
         console.error('PUT error:', err);
+
         res.status(500).json({ message: err.message });
+
+        res.status(500).json({ message: err.message })
+
     }
 });
 
