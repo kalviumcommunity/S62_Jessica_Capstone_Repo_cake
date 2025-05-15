@@ -84,7 +84,6 @@ app.put('/:id', upload.single('image'), async (req, res) => {
             }
         };
 
-
         if (req.file) {
             updateFields.imageUrl = req.file.path;
         }
@@ -98,12 +97,15 @@ app.put('/:id', upload.single('image'), async (req, res) => {
         if (!updatedCake) {
             return res.status(404).json({ message: 'Cake not found' });
         }
-        
 
         res.status(200).json(updatedCake);
     } catch (err) {
         console.error('PUT error:', err);
+
+        res.status(500).json({ message: err.message });
+
         res.status(500).json({ message: err.message })
+
     }
 });
 
