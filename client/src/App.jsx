@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import './styles.css';
 import { Search, ShoppingCart, User } from 'lucide-react';
 
-const cakes = [
-  { name: 'Chocolate Cake', image: '/cakeintro2.jpeg', price: 450, description:'Rich chocolate sponge with creamy ganache.' },
-  { name: 'Butterscotch Cake', image: '/cakelogowithintro1.jpeg', price: 700, description:'Sweet caramel flavor topped with crunchy bits.' },
-  { name: 'Black Forest Cake', image: '/cake2.jpeg', price: 550, description:'Layers of chocolate, cream, and cherries.' },
-  { name: 'Butterscotch Cream Cake', image: '/cake3.jpeg', price: 475, description: 'A moist vanilla sponge layered with creamy butterscotch and drizzled with caramel.' },
-  { name: 'Chocolate Mousse Cake', image: '/cake1.jpeg', price: 525, description:'A rich chocolate sponge filled with airy mousse and topped with silky ganache.' },
-];
+// const cakes = [
+//   { name: 'Chocolate Cake', image: '/cakeintro2.jpeg', price: 450, description:'Rich chocolate sponge with creamy ganache.' },
+//   { name: 'Butterscotch Cake', image: '/cakelogowithintro1.jpeg', price: 700, description:'Sweet caramel flavor topped with crunchy bits.' },
+//   { name: 'Black Forest Cake', image: '/cake2.jpeg', price: 550, description:'Layers of chocolate, cream, and cherries.' },
+//   { name: 'Butterscotch Cream Cake', image: '/cake3.jpeg', price: 475, description: 'A moist vanilla sponge layered with creamy butterscotch and drizzled with caramel.' },
+//   { name: 'Chocolate Mousse Cake', image: '/cake1.jpeg', price: 525, description:'A rich chocolate sponge filled with airy mousse and topped with silky ganache.' },
+// ];
 
 function CakeGallery({ onCakeClick, onBackToHome }) {
   return (
