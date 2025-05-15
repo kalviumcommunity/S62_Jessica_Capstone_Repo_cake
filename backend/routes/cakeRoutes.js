@@ -64,4 +64,47 @@ app.get('/:id', async (req, res) => {
     }
 });
 
+app.put('/:id', upload.single('image'), async (req, res) => {
+    try {
+        const { name, description } = req.body;
+
+        const mediumPrice = parseFloat(req.body['price.medium']);
+        const largePrice = parseFloat(req.body['price.large']);
+
+        if (isNaN(mediumPrice) || isNaN(largePrice)) {
+            return res.status(400).json({ message: 'Invalid price values' });
+        }
+
+        const updateFields = {
+            name,
+            description,
+            price: {
+                medium: mediumPrice,
+                large: largePrice
+            }
+        };
+
+
+        if (req.file) {
+            updateFields.imageUrl = req.file.path;
+        }
+
+        const updatedCake = await Cake.findByIdAndUpdate(
+            req.params.id,
+            updateFields,
+            { new: true }
+        );
+
+        if (!updatedCake) {
+            return res.status(404).json({ message: 'Cake not found' });
+        }
+        
+
+        res.status(200).json(updatedCake);
+    } catch (err) {
+        console.error('PUT error:', err);
+        res.status(500).json({ message: err.message })
+    }
+});
+
 module.exports = app;
