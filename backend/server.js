@@ -3,9 +3,11 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const multer = require('./multer.js');
 
+
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 mongoose.connect('mongodb://localhost:27017/custom-cake', {
     useNewUrlParser: true,
