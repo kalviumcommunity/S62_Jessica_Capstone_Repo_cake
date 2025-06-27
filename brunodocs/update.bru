@@ -1,0 +1,19 @@
+meta {
+  name: update
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:5001/api/cakes/682453803e0ff6190740e736
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  cake: Eggless Butterscotch Cake
+  description: Discover the innovative delight of our eggless butterscotch cake, featuring a unique blend of ingredients that come together to create a moist, fluffy and utterly delicious treat. Perfect for those looking for an egg-free alternative that doesn’t compromise on flavor and turns into their favorite.
+  price.medium: 700
+  price.large: 1400
+  image: @file(/Users/jessicashalominselvan/Desktop/CAPSTONE/S62_Jessica_Capstone_Repo_cake/backend/uploads/1747211136310-cake3.jpeg)
+}

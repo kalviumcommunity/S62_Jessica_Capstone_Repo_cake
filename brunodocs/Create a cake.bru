@@ -1,0 +1,32 @@
+meta {
+  name: Create a cake
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:5001/api/cakes
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name":"Black Forest",
+    "description":"Treat yourself to the decadent delight of our Black Forest cake, crafted with layers of rich, velvety chocolate cake, succulent cherries and creamy whipped cream in perfect notes of harmony creating cherishing memories of dessert experience to satisfy your cravings.",
+    "price":"₹550",
+    "imageUrl":"cake2.jpeg"
+  }
+}
+
+body:multipart-form {
+  name: Moist Dark Chocolate Cake
+  description: Deep, dark and delicious delight of our moist chocolate cake, texturing a dense and fudgy nature infused with the rich flavor of dark chocolate. A perfect treat for those looking for an intense chocolate experience.
+  price.medium: 525
+  price.large: 960
+  image: @file(/Users/jessicashalominselvan/Downloads/cake1.jpeg)
+}
