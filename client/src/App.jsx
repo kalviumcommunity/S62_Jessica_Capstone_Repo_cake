@@ -22,6 +22,9 @@ function CakeGallery({ onCakeClick, onBackToHome }) {
             <p>{cake.name}</p>
             </div>
         ))}
+          </div>
+        ))}
+        
       </div>
     </div>
   );
@@ -54,6 +57,29 @@ function CakeDetail({ cake, onBack, onAddToCart }) {
     </div>
     </div>
   )
+
+      <div className='detail-content'>
+        <img src={cake.image} alt={cake.name} className='detail-image' />
+        <div className='detail-info'>
+          <h2>{cake.name}</h2>
+          <p>{cake.description}</p>
+          <p><strong>Price:</strong> ₹{cake.price} </p>
+          <label>
+            Toppings:
+            <select>
+              <option>None</option>
+              <option>Choco Chips</option>
+              <option>Sprinkles</option>
+              <option>Caramel Drizzle</option>
+              <option>Extra Frosting</option>
+            </select>
+          </label>
+          <button className='add-to-cart' onClick={() => onAddToCart(cake)}>Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  );
+
 }
 
 function UserProfile({ onBack }) {
@@ -72,8 +98,15 @@ function UserProfile({ onBack }) {
   );
 }
 
+
 function CartView({ cartItems, onClose }) {
   const getTotal = () => 
+    cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+
+
+
+function CartView({ cartItems, onClose, onUpdateQuantity, onDeleteItem }) {
+  const getTotal = () =>
     cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
 
@@ -92,6 +125,19 @@ function CartView({ cartItems, onClose }) {
               <div className='item-details'>
                 <h3>{item.name}</h3>
                 <p>₹{item.price} × {item.quantity}</p>
+
+                <div className='cart-actions'>
+                  <button onClick={() => {
+                    const newQty = parseInt(prompt("Enter new quantity:", item.quantity));
+                    if (!isNaN(newQty)) {
+                      onUpdateQuantity(item.name, newQty);
+                    }
+                  }}>
+                    Update
+                  </button>
+                  <button onClick={() => onDeleteItem(item.name)}>Delete</button>
+                </div>
+
               </div>
             </div>
           ))}
@@ -99,18 +145,26 @@ function CartView({ cartItems, onClose }) {
             <strong>Total:</strong> ₹{getTotal()}
           </div>
           <button className='checkout-button'>Proceed to Checkout</button>
+
           </div>
+
+        </div>
+
       )}
     </div>
   );
 }
 
-function App(){
+
+
+function App() {
+
   const [cartItems, setCartItems] = useState([]);
   const [showCart, setShowCart] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [selectedCake, setSelectedCake] = useState(null);
   const [showGallery, setShowGallery] = useState(false);
+
 
   const handleOrderClick = () => {
     setShowGallery(true);
@@ -123,6 +177,10 @@ function App(){
   const handleBack = () => {
     setSelectedCake(null);
   };
+
+  const handleOrderClick = () => setShowGallery(true);
+  const handleCakeClick = (cake) => setSelectedCake(cake);
+  const handleBack = () => setSelectedCake(null);
 
   const handleAddToCart = (cake) => {
     setCartItems(prevItems => {
@@ -155,6 +213,47 @@ function App(){
           className='search-input'
           />
           <Search className='search-icon' size={18}/>
+
+        return prevItems.map(item =>
+          item.name === cake.name
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        return [...prevItems, { ...cake, quantity: 1 }];
+      }
+    });
+  };
+
+  const handleUpdateQuantity = (name, newQuantity) => {
+    if (newQuantity < 1) return;
+    setCartItems(prevItems =>
+      prevItems.map(item =>
+        item.name === name ? { ...item, quantity: newQuantity } : item
+      )
+    );
+  };
+
+  const handleDeleteItem = (name) => {
+    setCartItems(prevItems => prevItems.filter(item => item.name !== name));
+  };
+
+  return (
+    <div className='app-container'>
+      <div className='floating-logo-container'>
+        <img src='/jesmer.png' alt='Jesmer Logo' className='logo' />
+      </div>
+
+      {/* Navbar */}
+      <header className='navbar'>
+        <div className='search-bar'>
+          <input
+            type='text'
+            placeholder='Type in your cravings....'
+            className='search-input'
+          />
+          <Search className='search-icon' size={18} />
+
         </div>
 
         <div className='navbar-right'>
@@ -162,6 +261,7 @@ function App(){
           <User className='icon' size={24} onClick={() => setShowProfile(true)} />
         </div>
       </header>
+
 
       {/* <div className='welcome-message'>
         <p>Welcome to Jesmers'!</p>
