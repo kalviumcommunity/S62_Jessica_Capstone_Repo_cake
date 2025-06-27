@@ -11,9 +11,9 @@ body{
 
 
 .navbar {
-    background-color: #fce6e6;
+    background-color:  #e8bcbc;
     width: 100%;
-    padding: 12px 32px;
+    padding: 18px 32px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -27,10 +27,23 @@ body{
     display: flex;
     align-items: center;
 }
+
+.floating-logo-container {
+    position: absolute;
+    top: 10px;
+    right: 85%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
   
 .logo {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: contain;
+    background-color: white;
+    padding: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
   
 .search-bar {
@@ -40,6 +53,7 @@ body{
     align-items: center;
     justify-content: center;
     position: relative;
+    left: 35%;
 }
   
 .search-input {
