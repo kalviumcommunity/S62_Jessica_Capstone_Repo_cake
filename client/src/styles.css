@@ -11,6 +11,9 @@ body{
 
 
 .navbar {
+    background-color: #fce6e6;
+    width: 100%;
+    padding: 12px 32px;
     background-color:  #e8bcbc;
     width: 100%;
     padding: 18px 32px;
@@ -27,6 +30,12 @@ body{
     display: flex;
     align-items: center;
 }
+
+  
+.logo {
+    width: 100px;
+    height: 100px;
+
 
 .floating-logo-container {
     position: absolute;
@@ -53,7 +62,9 @@ body{
     align-items: center;
     justify-content: center;
     position: relative;
+
     left: 35%;
+
 }
   
 .search-input {
@@ -474,7 +485,11 @@ body{
     border: none;
     border-radius: 8px;
     cursor: pointer;
+
+    width: 100%;
+
     width: 100%; 
+
     margin-top: 20px;
 }
 
