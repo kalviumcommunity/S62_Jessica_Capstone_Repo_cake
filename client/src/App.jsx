@@ -20,8 +20,11 @@ function CakeGallery({ onCakeClick, onBackToHome }) {
           <div key={index} className='cake-card' onClick={() => onCakeClick(cake)}>
             <img src={cake.image} alt={cake.name} className='cake-image' />
             <p>{cake.name}</p>
+            </div>
+        ))}
           </div>
-        ))}``
+        ))}
+        
       </div>
     </div>
   );
@@ -31,6 +34,30 @@ function CakeDetail({ cake, onBack, onAddToCart }) {
   return (
     <div className='cake-detail'>
       <button className='back-button' onClick={onBack}>← Back</button>
+
+      <div className='detail-content'>
+      <img src={cake.image} alt={cake.name} className='detail-image' />
+
+      <div className='detail-info'>
+      <h2>{cake.name}</h2>
+      <p>{cake.description}</p>
+      <p><strong>Price:</strong> ₹{cake.price} </p>
+      <label>
+        Toppings:
+        <select>
+          <option>None</option>
+          <option>Choco Chips</option>
+          <option>Sprinkles</option>
+          <option>Caramel Drizzle</option>
+          <option>Extra Frosting</option>
+        </select>
+      </label>
+      <button className='add-to-cart' onClick={() => onAddToCart(cake)}>Add to Cart</button>
+      </div>
+    </div>
+    </div>
+  )
+
       <div className='detail-content'>
         <img src={cake.image} alt={cake.name} className='detail-image' />
         <div className='detail-info'>
@@ -52,6 +79,7 @@ function CakeDetail({ cake, onBack, onAddToCart }) {
       </div>
     </div>
   );
+
 }
 
 function UserProfile({ onBack }) {
@@ -70,9 +98,17 @@ function UserProfile({ onBack }) {
   );
 }
 
+
+function CartView({ cartItems, onClose }) {
+  const getTotal = () => 
+    cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+
+
+
 function CartView({ cartItems, onClose, onUpdateQuantity, onDeleteItem }) {
   const getTotal = () =>
     cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+
 
   return (
     <div className='cart-view'>
@@ -89,6 +125,7 @@ function CartView({ cartItems, onClose, onUpdateQuantity, onDeleteItem }) {
               <div className='item-details'>
                 <h3>{item.name}</h3>
                 <p>₹{item.price} × {item.quantity}</p>
+
                 <div className='cart-actions'>
                   <button onClick={() => {
                     const newQty = parseInt(prompt("Enter new quantity:", item.quantity));
@@ -100,6 +137,7 @@ function CartView({ cartItems, onClose, onUpdateQuantity, onDeleteItem }) {
                   </button>
                   <button onClick={() => onDeleteItem(item.name)}>Delete</button>
                 </div>
+
               </div>
             </div>
           ))}
@@ -107,18 +145,38 @@ function CartView({ cartItems, onClose, onUpdateQuantity, onDeleteItem }) {
             <strong>Total:</strong> ₹{getTotal()}
           </div>
           <button className='checkout-button'>Proceed to Checkout</button>
+
+          </div>
+
         </div>
+
       )}
     </div>
   );
 }
 
+
+
 function App() {
+
   const [cartItems, setCartItems] = useState([]);
   const [showCart, setShowCart] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [selectedCake, setSelectedCake] = useState(null);
   const [showGallery, setShowGallery] = useState(false);
+
+
+  const handleOrderClick = () => {
+    setShowGallery(true);
+  };
+
+  const handleCakeClick = (cake) => {
+    setSelectedCake(cake);
+  };
+
+  const handleBack = () => {
+    setSelectedCake(null);
+  };
 
   const handleOrderClick = () => setShowGallery(true);
   const handleCakeClick = (cake) => setSelectedCake(cake);
@@ -128,6 +186,34 @@ function App() {
     setCartItems(prevItems => {
       const existingItem = prevItems.find(item => item.name === cake.name);
       if (existingItem) {
+        return prevItems.map(item => 
+          item.name === cake.name
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+        );
+      } else {
+        return [...prevItems, {...cake, quantity: 1}];
+      }
+    });
+  };
+
+  return (
+
+    <div className='app-container'>
+      {/* Navbar */}
+      <header className='navbar'>
+        <div className='navbar-left'>
+          <img src='/jesmer.png' alt='Jesmer Logo' className='logo' />
+        </div>
+
+        <div className='search-bar'>
+          <input 
+          type='text'
+          placeholder='Type in your cravings....'
+          className='search-input'
+          />
+          <Search className='search-icon' size={18}/>
+
         return prevItems.map(item =>
           item.name === cake.name
             ? { ...item, quantity: item.quantity + 1 }
@@ -167,6 +253,7 @@ function App() {
             className='search-input'
           />
           <Search className='search-icon' size={18} />
+
         </div>
 
         <div className='navbar-right'>
@@ -175,70 +262,70 @@ function App() {
         </div>
       </header>
 
+
+      {/* <div className='welcome-message'>
+        <p>Welcome to Jesmers'!</p>
+      </div> */}
+
       {showProfile ? (
-        <UserProfile onBack={() => setShowProfile(false)} />
+          <UserProfile onBack={() => setShowProfile(false)} />
       ) : showCart ? (
-        <CartView
-          cartItems={cartItems}
-          onClose={() => setShowCart(false)}
-          onUpdateQuantity={handleUpdateQuantity}
-          onDeleteItem={handleDeleteItem}
-        />
+        <CartView cartItems={cartItems} onClose={() => setShowCart(false)} />
       ) : selectedCake ? (
-        <CakeDetail cake={selectedCake} onBack={handleBack} onAddToCart={handleAddToCart} />
+        <CakeDetail cake={selectedCake} onBack={handleBack} onAddToCart={handleAddToCart}/>
       ) : showGallery ? (
-        <CakeGallery
-          onCakeClick={handleCakeClick}
-          onBackToHome={() => setShowGallery(false)}
-        />
+        <CakeGallery onCakeClick={handleCakeClick}
+        onBackToHome={() => setShowGallery(false)} />
       ) : (
         <>
-          <div className='welcome-message'>
-            <p>Welcome to Jesmer!</p>
+      
+      <div className='welcome-message'>
+        <p>Welcome to Jesmer!</p>
+      </div>
+
+      <section className='hero'>
+        <div className='hero-text'>
+          <h1>Delight in Every Bite!</h1>
+          {/* {/* <h2>Cakes and Cookies</h2> */}
+          <p>Freshly baked cakes & cookies, crafted with love to cherish your sweetest memories.</p> 
+          <button className='cta-button' onClick={handleOrderClick}>Place Your Order </button>
           </div>
+          <div className='hero-image'>
+            <img src='/cakeintro2.jpeg' alt='Hero Cake' />
+        </div>
+      </section>
 
-          <section className='hero'>
-            <div className='hero-text'>
-              <h1>Delight in Every Bite!</h1>
-              <p>Freshly baked cakes & cookies, crafted with love to cherish your sweetest memories.</p>
-              <button className='cta-button' onClick={handleOrderClick}>Place Your Order</button>
-            </div>
-            <div className='hero-image'>
-              <img src='/cakeintro2.jpeg' alt='Hero Cake' />
-            </div>
-          </section>
+      <section className='review-section'>
+        <div className='review-card'>
+          <img src='/cake1.jpeg' alt='Butterscotch Cake'/>
+          <p className='review-user'>@unkownabc</p>
+          <p className='review-text'>Best birthday cake I've ever had. So moist and rich!</p>
+        </div>
 
-          <section className='review-section'>
-            <div className='review-card'>
-              <img src='/cake1.jpeg' alt='Butterscotch Cake' />
-              <p className='review-user'>@unkownabc</p>
-              <p className='review-text'>Best birthday cake I've ever had. So moist and rich!</p>
-            </div>
+        <div className='review-card'>
+          <img src='/cakelogowithintro1.jpeg' alt='cake1'/>
+          <p className='review-user'>@unkown123</p>
+          <p className='review-text'>Ordered this for our anniversary - perfection.</p>
+        </div>
 
-            <div className='review-card'>
-              <img src='/cakelogowithintro1.jpeg' alt='cake1' />
-              <p className='review-user'>@unkown123</p>
-              <p className='review-text'>Ordered this for our anniversary - perfection.</p>
-            </div>
+        <div className='review-card'>
+          <img src='/cake2.jpeg' alt='cake2'/>
+          <p className='review-user'>@unknown321</p>
+          <p className='review-text'>Delicious and beautifully decorated. Highly recommend.</p>
+        </div>
+      </section>
 
-            <div className='review-card'>
-              <img src='/cake2.jpeg' alt='cake2' />
-              <p className='review-user'>@unknown321</p>
-              <p className='review-text'>Delicious and beautifully decorated. Highly recommend.</p>
-            </div>
-          </section>
-
-          <footer className='contact-section'>
-            <h2>Contact Us</h2>
-            <p>Email: jesmercakes@gmail.com</p>
-            <p>Phone: +91 6363941678</p>
-            <p>Address: #22, KRISHNA REDDY LAYOUT, RAMAMUTHY NAGAR, KR PURAM, 
-              BANGALORE- 560 016</p>
-          </footer>
-        </>
+      <footer className='contact-section'>
+        <h2>Contact Us</h2>
+        <p>Email: jesmercakes@gmail.com</p>
+        <p>Phone: +91 6363941678</p>
+        <p>Address: #22, KRISHNA REDDY LAYOUT, RAMAMUTHY NAGAR, KR PURAM, 
+        BANGALORE- 560 016 </p>
+      </footer>
+      </>
       )}
     </div>
-  );
+  ); 
 }
 
 export default App;
