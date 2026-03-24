@@ -1,23 +1,14 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const multer = require('./multer.js');
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
+require("dotenv").config();
 
-const app = express();
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+const app = require("./src/app");
+const connectDB = require("./src/config/db.config");
 
-mongoose.connect('mongodb://localhost:27017/custom-cake', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-.then(() => console.log('MongoDB connected successfully'))
-.catch((err) => console.error('DB connection error: ', err));
+const PORT = process.env.PORT || 5001;
 
-const cakeRoutes = require('./routes/cakeRoutes');
-app.use('/api/cakes', cakeRoutes);
+connectDB();
 
-const PORT =5001;
-app.listen(PORT ,()=> console.log('Server running on port',`${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
