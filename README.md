@@ -1,32 +1,100 @@
-## CAKE CUSTOMISATION ## 
+# 🎂 Cake Shop Web Application
 
-A simple and user-friendly online platform where customers can browse ready-made cakes, customize their own cakes (selecting flavors, size, toppings, etc.), and place orders seamlessly.
-The website will have a clear separation between the frontend and backend to ensure scalability, maintainability, and easy future integration with databases and payment gateways.
+A full-stack web application designed to provide a seamless and engaging cake ordering experience. This platform enables users to browse a curated selection of cakes, manage their profiles, and interact with a modern, responsive interface.
 
-_______________________________________________________________________________________________________________________________________
+---
 
-Day 1 -> Setting up github repo
+## 📌 Overview
 
-Day 2 -> Initialise react / frontend
+The Cake Shop Web Application is built using a modern full-stack architecture, combining a dynamic frontend with a robust backend and database. It demonstrates best practices in web development, including component-based UI design, RESTful APIs, and secure handling of environment variables.
 
-Day 3 -> Create frontend components
+---
 
-Day 4 -> Deploy frontend server
+## ✨ Features
 
-Day 5 -> GET API
+- Browse a wide range of cakes with detailed descriptions  
+- User authentication and authorization  
+- Profile management functionality  
+- Add-to-cart and order interaction (if implemented)  
+- Responsive user interface for multiple devices  
+- Modular and scalable project structure  
 
-Day 6 -> POST API
+---
 
-Day 7 -> PUT API
+## 🛠️ Technology Stack
 
-Day 8 -> Deployed Backend Server
+### Frontend
+- React.js  
+- CSS / Tailwind CSS (if applicable)  
+- Axios  
 
-Day 9 -> Low-fid
+### Backend
+- Node.js  
+- Express.js  
 
-Day 10 -> High-fid
+### Database
+- MongoDB  
 
-Day 11 -> Matching design and end state
+---
 
-Frontend Deployed - https://jesmercakesandcookies.netlify.app/
+## 📁 Project Structure
+project-root/
+│
+├── frontend/ # React application
+│
+├── backend/ # Node.js + Express server
+│ ├── controllers/ # Business logic
+│ ├── models/ # Database schemas
+│ ├── routes/ # API routes
+│ └── config/ # Configuration files
+│
+├── .gitignore
+├── README.md
 
-Backend Deployed - https://s62-jessica-capstone-repo-cake.onrender.com
+---
+
+## 🔐 Environment Variables
+
+Sensitive configuration values are managed using environment variables.
+
+Example:
+
+
+PORT=
+MONGO_URI=
+JWT_SECRET=
+
+
+> **Note:** The `.env` file is excluded from version control via `.gitignore` to ensure security.
+
+---
+
+## 🚀 Future Enhancements
+
+- Payment gateway integration  
+- Order tracking system  
+- Product reviews and ratings  
+- Admin dashboard for inventory management  
+- Notifications and alerts system  
+
+---
+
+## 🧪 Testing and Improvements
+
+Further improvements can include:
+- Unit and integration testing  
+- Performance optimization  
+- Enhanced error handling  
+- Accessibility improvements  
+
+---`
+
+## 👩‍💻 Author
+
+Developed as part of a capstone project to demonstrate full-stack development skills and application design.
+
+---
+
+## ⭐ Acknowledgment
+
+If you find this project useful, consider giving it a star to show your support.
