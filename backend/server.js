@@ -7,6 +7,7 @@ if (process.env.NODE_ENV !== "production") {
 console.log("ENV CHECK:", process.env.MONGODB_URI); 
 const app = require("./src/app");
 const connectDB = require("./src/config/db.config");
+const cors = require("cors");
 
 
 const PORT = process.env.PORT || 5001;
