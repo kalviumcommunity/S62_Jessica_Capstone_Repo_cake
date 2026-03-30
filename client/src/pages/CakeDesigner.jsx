@@ -25,7 +25,7 @@ function CakeDesigner({ onBack, onAddToCart }) {
     try {
 
       const res = await axios.post(
-        "http://localhost:5001/generate-image",
+        `${import.meta.env.VITE_API_URL}/generate-image`,
         { prompt }
       );
 
