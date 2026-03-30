@@ -5,13 +5,14 @@ function Login({ setIsAdmin, setShowDashboard, setIsLoggedIn, setShowLogin }) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const API = import.meta.env.VITE_API_URL;
 
   const handleLogin = async () => {
 
     try {
 
       const res = await axios.post(
-        "http://localhost:5001/api/auth/login",
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
         { email, password }
       );
 
