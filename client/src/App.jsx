@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import axios from "axios";
 import CakeDesigner from "./pages/CakeDesigner";
 import CakeCustomizer from "./pages/CakeCustomizer";
+const API = import.meta.env.VITE_API_URL;
 
 function CakeGallery({ cakes, onCakeClick, onBackToHome }) {
   return (
@@ -40,7 +41,7 @@ function CakeDetail({ cake, onBack, onAddToCart }) {
       try {
 
         const res = await axios.get(
-          `http://localhost:5001/api/reviews/${cake._id}`
+          `${API}/api/reviews/${cake._id}`
         );
 
         setReviews(res.data);
@@ -62,7 +63,7 @@ function CakeDetail({ cake, onBack, onAddToCart }) {
     try {
 
       const res = await axios.post(
-        "http://localhost:5001/api/reviews",
+        `${API}/api/reviews`,
         {
           cakeId: cake._id,
           name,
@@ -218,7 +219,7 @@ function CartView({ cartItems, onClose, onUpdateQuantity, onDeleteItem, clearCar
 
     try {
 
-      await axios.post("http://localhost:5001/api/orders", {
+      await axios.post(`${API}/api/orders`, {
         items: cartItems.map(item => ({
           cakeId: item._id,
           quantity: item.quantity,
@@ -403,7 +404,7 @@ function App() {
 
     try {
 
-      const res = await axios.post("http://localhost:5001/api/reviews", {
+      const res = await axios.post(`${API}/api/reviews`, {
         name,
         rating,
         comment
@@ -429,7 +430,7 @@ function App() {
 
       try {
 
-        const res = await axios.get("http://localhost:5001/api/cakes");
+        const res = await axios.get(`${API}/api/cakes`);
         setCakes(res.data);
 
       } catch (error) {
@@ -452,7 +453,7 @@ function App() {
 
     const fetchReviews = async () => {
 
-      const res = await axios.get("http://localhost:5001/api/reviews");
+      const res = await axios.get(`${API}/api/reviews`);
       setReviews(res.data);
 
     };
