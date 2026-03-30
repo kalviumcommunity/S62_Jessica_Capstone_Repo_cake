@@ -925,6 +925,419 @@ cursor:pointer;
 
 }
 
+/* ========================= */
+/* 🌸 PREMIUM CUSTOMIZER UI */
+/* ========================= */
+
+/* Left panel glass effect */
+.customizer-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  border-radius: 22px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+}
+
+/* Smooth section spacing */
+.designer-controls > * {
+  margin-bottom: 14px;
+}
+
+/* Section titles */
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #3a2a2a;
+  margin-bottom: 8px;
+}
+
+/* Inputs glow */
+.designer-field select:focus {
+  outline: none;
+  border: 1px solid #ff6b8b;
+  box-shadow: 0 0 0 2px rgba(255, 107, 139, 0.2);
+}
+
+/* Layer buttons */
+.layer-btn {
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(255, 105, 135, 0.25);
+}
+
+.layer-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(255, 105, 135, 0.35);
+}
+
+/* Toppings grid upgrade */
+.toppings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+/* Topping button premium feel */
+.topping-btn {
+  background: #fdf2f4;
+  border-radius: 16px;
+  padding: 12px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.topping-btn:hover {
+  transform: translateY(-4px) scale(1.03);
+  background: #ffe4ea;
+  box-shadow: 0 10px 25px rgba(255, 105, 135, 0.3);
+}
+
+/* Cake preview frame */
+.preview-3d {
+  background: linear-gradient(145deg, #ffffff, #f1f1f1);
+  border-radius: 30px;
+  padding: 30px;
+  box-shadow:
+    inset 0 2px 6px rgba(255,255,255,0.6),
+    0 20px 40px rgba(0,0,0,0.12);
+}
+
+/* Price highlight */
+.price-highlight {
+  background: linear-gradient(135deg, #fff, #ffe4ea);
+  border-radius: 14px;
+  padding: 12px 16px;
+  box-shadow: inset 0 2px 6px rgba(255,255,255,0.6);
+  font-weight: 600;
+  color: #5a3434;
+}
+
+/* Add to cart premium button */
+.add-cart-btn {
+  background: linear-gradient(135deg, #ff5f8f, #ff8fab);
+  box-shadow: 0 8px 20px rgba(255, 105, 135, 0.35);
+  border-radius: 14px;
+  transition: all 0.25s ease;
+}
+
+.add-cart-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(255, 105, 135, 0.5);
+}
+
+/* Back button polish */
+.designer-back {
+  transition: all 0.2s ease;
+}
+
+.designer-back:hover {
+  background: #333;
+  transform: translateY(-1px);
+}
+
+/* Smooth animation */
+.preview-3d canvas {
+  animation: floatCake 4s ease-in-out infinite;
+}
+
+/* ========================= */
+/* 🌸 PREMIUM UI UPGRADE */
+/* ========================= */
+
+/* Global text clarity */
+body {
+  color: #2b2b2b;
+  font-weight: 500;
+}
+
+/* LEFT PANEL */
+.customizer-panel {
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.08);
+}
+
+/* SECTION HEADINGS */
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2b2b2b;
+  margin-bottom: 12px;
+}
+
+/* SELECT INPUT */
+select {
+  border: 1px solid #ddd;
+  background: white;
+  transition: 0.2s ease;
+}
+
+select:focus {
+  border-color: #ff6b8b;
+  box-shadow: 0 0 0 2px rgba(255, 105, 135, 0.2);
+}
+
+/* ADD LAYER BUTTON */
+.layer-btn {
+  background: linear-gradient(135deg, #ff5f8f, #ff8fab);
+  color: white;
+  font-weight: 600;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(255, 105, 135, 0.3);
+  transition: all 0.25s ease;
+}
+
+.layer-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(255, 105, 135, 0.45);
+}
+
+/* ========================= */
+/* 🍓 TOPPINGS (BIG FIX) */
+/* ========================= */
+
+.toppings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.topping-btn {
+  background: linear-gradient(145deg, #ffffff, #ffe4ea);
+  border-radius: 18px;
+  padding: 16px;
+  color: #2b2b2b;
+  font-weight: 500;
+  box-shadow: 
+    0 6px 15px rgba(255, 105, 135, 0.15),
+    inset 0 1px 2px rgba(255,255,255,0.6);
+  transition: all 0.25s ease;
+}
+
+.topping-btn:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 
+    0 15px 30px rgba(255, 105, 135, 0.35),
+    inset 0 1px 2px rgba(255,255,255,0.6);
+}
+
+/* ========================= */
+/* 💰 PRICE SECTION */
+/* ========================= */
+
+.price-highlight {
+  background: linear-gradient(135deg, #fff, #ffdce5);
+  border-radius: 18px;
+  padding: 16px 20px;
+  color: #2b2b2b;
+  box-shadow: 
+    inset 0 2px 6px rgba(255,255,255,0.6),
+    0 6px 12px rgba(0,0,0,0.05);
+}
+
+/* ========================= */
+/* 🛒 ADD TO CART BUTTON */
+/* ========================= */
+
+.add-cart-btn {
+  background: linear-gradient(135deg, #ff5f8f, #ff8fab);
+  border-radius: 14px;
+  font-weight: 600;
+  box-shadow: 0 12px 25px rgba(255, 105, 135, 0.4);
+  transition: all 0.25s ease;
+}
+
+.add-cart-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 35px rgba(255, 105, 135, 0.55);
+}
+
+/* ========================= */
+/* 🎂 CAKE PREVIEW */
+/* ========================= */
+
+.preview-3d {
+  background: radial-gradient(circle at top, #ffffff, #f3f3f3);
+  border-radius: 30px;
+  padding: 50px;
+  box-shadow:
+    inset 0 2px 6px rgba(255,255,255,0.6),
+    0 25px 50px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: floatCake 5s ease-in-out infinite;
+}
+
+/* FLOAT ANIMATION */
+@keyframes floatCake {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-14px); }
+  100% { transform: translateY(0px); }
+}
+
+/* ========================= */
+/* 🔙 BACK BUTTON */
+/* ========================= */
+
+.designer-back {
+  background: #1f1f1f;
+  border-radius: 10px;
+  transition: 0.2s ease;
+}
+
+.designer-back:hover {
+  background: #333;
+  transform: translateY(-1px);
+}
+
+ /* ========================= */
+/* 🎂 INTERACTIVE CAKE */
+/* ========================= */
+
+.interactive-cake {
+  transition: transform 0.25s ease;
+  transform-style: preserve-3d;
+  cursor: grab;
+}
+
+/* ========================= */
+/* 🍓 TOPPING DROP ANIMATION */
+/* ========================= */
+
+@keyframes dropIn {
+  0% {
+    transform: translateY(-40px) scale(0.7);
+    opacity: 0;
+  }
+  70% {
+    transform: translateY(10px) scale(1.1);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.topping-btn:active {
+  transform: scale(0.92);
+}
+
+/* ========================= */
+/* ✨ BUTTON MICRO INTERACTIONS */
+/* ========================= */
+
+.layer-btn,
+.add-cart-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.layer-btn::after,
+.add-cart-btn::after {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(255,255,255,0.4), transparent);
+  top: -100%;
+  left: -100%;
+  transition: 0.4s;
+}
+
+.layer-btn:hover::after,
+.add-cart-btn:hover::after {
+  top: 0;
+  left: 0;
+}
+
+/* ========================= */
+/* ✨ FLOAT ENHANCEMENT */
+/* ========================= */
+
+.preview-3d {
+  animation: floatCake 5s ease-in-out infinite;
+}
+
+/* ========================= */
+/* 🎂 INTERACTIVE CAKE */
+/* ========================= */
+
+.interactive-cake {
+  transition: transform 0.25s ease;
+  transform-style: preserve-3d;
+  cursor: grab;
+}
+
+/* ========================= */
+/* 🍓 TOPPING DROP ANIMATION */
+/* ========================= */
+
+@keyframes dropIn {
+  0% {
+    transform: translateY(-40px) scale(0.7);
+    opacity: 0;
+  }
+  70% {
+    transform: translateY(10px) scale(1.1);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.topping-btn:active {
+  transform: scale(0.92);
+}
+
+/* ========================= */
+/* ✨ BUTTON MICRO INTERACTIONS */
+/* ========================= */
+
+.layer-btn,
+.add-cart-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.layer-btn::after,
+.add-cart-btn::after {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(255,255,255,0.4), transparent);
+  top: -100%;
+  left: -100%;
+  transition: 0.4s;
+}
+
+.layer-btn:hover::after,
+.add-cart-btn:hover::after {
+  top: 0;
+  left: 0;
+}
+
+/* ========================= */
+/* ✨ FLOAT ENHANCEMENT */
+/* ========================= */
+
+.preview-3d {
+  animation: floatCake 5s ease-in-out infinite;
+}
+
+@keyframes floatCake {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-18px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes floatCake {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-18px); }
+  100% { transform: translateY(0px); }
+}
+
 @keyframes floatCake{
 0%{
 transform:translateY(0px);
