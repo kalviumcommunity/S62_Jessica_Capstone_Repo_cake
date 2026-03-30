@@ -31,7 +31,7 @@ function AdminDashboard() {
 
   const updateOrderStatus = async (id, status) => {
 
-  await axios.put(`http://localhost:5001/api/orders/${id}`, {
+  await axios.put(`${import.meta.env.VITE_API_URL}/api/orders/${id}`, {
     status
   });
 
@@ -44,7 +44,7 @@ function AdminDashboard() {
 
   const fetchOrders = async () => {
 
-    const res = await axios.get("http://localhost:5001/api/orders");
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/orders`);
 
     setOrders(res.data);
 
@@ -58,7 +58,7 @@ function AdminDashboard() {
   useEffect(() => {
 
     const fetchCakes = async () => {
-      const res = await axios.get("http://localhost:5001/api/cakes");
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/cakes`);
       setCakes(res.data);
     };
 
@@ -87,17 +87,17 @@ function AdminDashboard() {
         };
 
         const revenueRes = await axios.get(
-          "http://localhost:5001/api/analytics/revenue",
+          `${import.meta.env.VITE_API_URL}/api/analytics/revenue`,
           config
         );
 
         const flavorRes = await axios.get(
-          "http://localhost:5001/api/analytics/popular-flavors",
+          `${import.meta.env.VITE_API_URL}/api/analytics/popular-flavors`,
           config
         );
 
         const ordersRes = await axios.get(
-          "http://localhost:5001/api/analytics/orders-per-day",
+          `${import.meta.env.VITE_API_URL}/api/analytics/orders-per-day`,
           config
         );
 
@@ -118,7 +118,7 @@ function AdminDashboard() {
   // Add cake
   const handleAddCake = async () => {
 
-    await axios.post("http://localhost:5001/api/cakes", {
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/cakes`, {
 
       name: newCake.name,
       description: newCake.description,
@@ -139,7 +139,7 @@ function AdminDashboard() {
   // Delete cake
   const deleteCake = async (id) => {
 
-    await axios.delete(`http://localhost:5001/api/cakes/${id}`);
+    await axios.delete(`${import.meta.env.VITE_API_URL}/api/cakes/${id}`);
 
     setCakes(cakes.filter(cake => cake._id !== id));
 
@@ -149,7 +149,7 @@ function AdminDashboard() {
   const updateCake = async () => {
 
     await axios.put(
-      `http://localhost:5001/api/cakes/${editingCake._id}`,
+      `${import.meta.env.VITE_API_URL}/api/cakes/${editingCake._id}`,
       {
         name: editingCake.name,
         description: editingCake.description,
