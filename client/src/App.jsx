@@ -549,7 +549,7 @@ function App() {
         />
       ) : showGallery ? (
         <CakeGallery
-          cakes={filteredCakes}
+          cakes={searchTerm ? filteredCakes : cakes}
           onCakeClick={setSelectedCake}
           onBackToHome={() => setShowGallery(false)}
         />
