@@ -324,7 +324,6 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [showDashboard, setShowDashboard] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-
   const [reviews, setReviews] = useState([]);
   const [name, setName] = useState("");
   const [rating, setRating] = useState(5);
@@ -445,9 +444,9 @@ function App() {
 
   }, []);
 
-  const filteredCakes = cakes.filter(cake =>
+  const filteredCakes = Array.isArray(cakes) ? cakes.filter(cake =>
     cake.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  ) : [];
 
   useEffect(() => {
 
@@ -602,6 +601,7 @@ function App() {
               {reviews.length === 0 ? (
                 <p>No reviews yet. Be the first!</p>
               ) : (
+                Array.isArray(reviews) && 
                 reviews.map(review => (
                   <div key={review._id} className="review-card">
                     <h3>{review.name}</h3>
