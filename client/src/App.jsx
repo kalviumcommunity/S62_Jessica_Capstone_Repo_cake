@@ -8,6 +8,8 @@ import CakeDesigner from "./pages/CakeDesigner";
 import CakeCustomizer from "./pages/CakeCustomizer";
 const API = import.meta.env.VITE_API_URL;
 
+console.log("cakes in gallery:", cakes);
+
 function CakeGallery({ cakes, onCakeClick, onBackToHome }) {
   return (
     <div className="gallery">
@@ -16,12 +18,16 @@ function CakeGallery({ cakes, onCakeClick, onBackToHome }) {
       <h2>Choose Your Cake</h2>
 
       <div className="cake-grid">
-        {cakes.map((cake) => (
-          <div key={cake._id} className="cake-card" onClick={() => onCakeClick(cake)}>
-            <img src={`${API}${cake.image}`} alt={cake.name} className="cake-image" />
-            <p>{cake.name}</p>
-          </div>
-        ))}
+        {cakes.length === 0 ? (
+  <p>Loading cakes...</p>
+) : (
+  cakes.map((cake) => (
+    <div key={cake._id} className="cake-card">
+      <img src={`${API}${cake.image}`} alt={cake.name} />
+      <p>{cake.name}</p>
+    </div>
+  ))
+)}
       </div>
     </div>
   );
