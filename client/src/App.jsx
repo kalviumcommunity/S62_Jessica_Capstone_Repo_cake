@@ -18,7 +18,7 @@ function CakeGallery({ cakes, onCakeClick, onBackToHome }) {
       <div className="cake-grid">
         {cakes.map((cake) => (
           <div key={cake._id} className="cake-card" onClick={() => onCakeClick(cake)}>
-            <img src={cake.image} alt={cake.name} className="cake-image" />
+            <img src={`${API}${cake.image}`} alt={cake.name} className="cake-image" />
             <p>{cake.name}</p>
           </div>
         ))}
