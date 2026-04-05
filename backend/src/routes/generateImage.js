@@ -10,7 +10,12 @@ router.post("/", async (req, res) => {
     if (!prompt) {
       return res.status(400).json({ error: "Prompt is required" });
     }
+
+console.log("🔥 Generate image route hit");
     
+const controller = new AbortController();
+const timeout = setTimeout(() => controller.abort(), 20000); // 20 sec
+
 const response = await fetch(
   "https://router.huggingface.co/hf-inference/models/black-forest-labs/FLUX.1-schnell",
   {
@@ -19,11 +24,12 @@ const response = await fetch(
       Authorization: `Bearer ${process.env.HF_API_KEY}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      inputs: prompt
-    }),
+    body: JSON.stringify({ inputs: prompt }),
+    signal: controller.signal,
   }
 );
+
+clearTimeout(timeout);
 
     // Handle HF errors (like model loading)
     if (!response.ok) {
