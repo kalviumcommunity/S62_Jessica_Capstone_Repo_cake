@@ -10,6 +10,8 @@ const generateImageRoute = require('./routes/generateImage');
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: [
@@ -19,14 +21,12 @@ app.use(
     credentials: true,
   })
 );
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/cakes", cakeRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/api/reviews", reviewRoutes);
-app.use("/generate-image", generateImageRoute);
+app.use("/api/generate-image", generateImageRoute);
 
 module.exports = app;
