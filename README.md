@@ -4,6 +4,12 @@ A full-stack web application designed to provide a seamless and engaging cake or
 
 ---
 
+## Deployed Link 
+
+https://s62-jessica-capstone-repo-cake-teal.vercel.app/
+
+--
+
 ## 📌 Overview
 
 The Cake Shop Web Application is built using a modern full-stack architecture, combining a dynamic frontend with a robust backend and database. It demonstrates best practices in web development, including component-based UI design, RESTful APIs, and secure handling of environment variables.
