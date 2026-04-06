@@ -260,7 +260,14 @@ function CartView({ cartItems, onClose, onUpdateQuantity, onDeleteItem, clearCar
           {cartItems.map(item => (
             <div key={item._id} className="cart-item">
 
-              <img src={item.image} alt={item.name} className="cart-image" />
+              {/* ✅ FIXED IMAGE HANDLING */}
+              {item.image ? (
+                <img src={item.image} alt={item.name} className="cart-image" />
+              ) : (
+                <div className="cart-image">
+                  🎂
+                </div>
+              )}
 
               <div className="item-details">
 
@@ -333,36 +340,39 @@ function App() {
   const[showDesigner, setShowDesigner] = useState(false);
   const [showCustomizer, setShowCustomizer] = useState(false);
 
-  const handleAddToCart = (cake) => {
+const handleAddToCart = (cake) => {
 
-    setCartItems(prev => {
+  setCartItems(prev => {
 
-      const existing = prev.find(item => item._id === cake._id);
+    const existing = prev.find(item => item._id === cake._id);
 
-      if (existing) {
+    if (existing) {
+      return prev.map(item =>
+        item._id === cake._id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+    }
 
-        return prev.map(item =>
-          item._id === cake._id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
+    return [
+      ...prev,
+      {
+        _id: cake._id,
+        name: cake.name,
+        image: cake.image,
 
+        // ✅ FIX — supports BOTH normal + custom cakes
+        price: typeof cake.price === "object"
+          ? cake.price.medium
+          : cake.price,
+
+        quantity: 1
       }
+    ];
 
-      return [
-        ...prev,
-        {
-          _id: cake._id,
-          name: cake.name,
-          image: cake.image,
-          price: cake.price.medium,
-          quantity: 1
-        }
-      ];
+  });
 
-    });
-
-  };
+};
 
   const handleUpdateQuantity = (id, newQty) => {
 

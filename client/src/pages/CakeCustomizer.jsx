@@ -31,7 +31,8 @@ export default function CakeCustomizer({ onBack, onAddToCart }) {
     setToppings(toppings.slice(0, -1));
   };
 
-  const price = 500 + layers.length * 150 + toppings.length * 40;
+  // ✅ FIXED PRICE (important)
+  const price = Number(500 + layers.length * 150 + toppings.length * 40);
 
   return (
     <div className="fixed inset-0 bg-[#f6e8ea] flex justify-center items-center z-50">
@@ -139,14 +140,14 @@ export default function CakeCustomizer({ onBack, onAddToCart }) {
                   <button
                     key={item.type}
                     onClick={() => {
-                    setToppings((prev) => [
-                      ...prev,
-                  {
-                    id: Date.now(),
-                    type: item.type
-                  }
-          ]); 
-        }}
+                      setToppings((prev) => [
+                        ...prev,
+                        {
+                          id: Date.now(),
+                          type: item.type
+                        }
+                      ]);
+                    }}
                     className={`topping-btn flex flex-col items-center justify-center p-4 ${
                       selectedTopping === item.type ? "bg-pink-100" : ""
                     }`}
@@ -182,14 +183,20 @@ export default function CakeCustomizer({ onBack, onAddToCart }) {
 
             <button
               className="add-cart-btn flex items-center justify-center gap-2 text-white w-full py-3 text-lg font-semibold"
-              onClick={() =>
-                onAddToCart({
-                  name: "Custom Cake",
+              onClick={() => {
+                const customCake = {
+                  _id: Date.now(),
+                  name: "Custom 3D Cake",
+                  image: "https://via.placeholder.com/300x200.png?text=Custom+Cake",
+                  price: Number(price), // ✅ FIXED
+                  quantity: 1,
                   layers,
                   frostingColor,
                   toppings
-                })
-              }
+                };
+
+                onAddToCart(customCake);
+              }}
             >
               <ShoppingCart size={18} />
               Add to Cart

@@ -15,7 +15,7 @@ router.post("/", async (req, res) => {
 console.log("🔥 Generate image route hit");
     
 const controller = new AbortController();
-const timeout = setTimeout(() => controller.abort(), 20000); // 20 sec
+const timeout = setTimeout(() => controller.abort(), 30000); // 30 sec
 
 const response = await fetch(
   "https://router.huggingface.co/hf-inference/models/black-forest-labs/FLUX.1-schnell",
