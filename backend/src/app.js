@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://s62-jessica-capstone-repo-cake-6e4ga62yk.vercel.app"
+    "https://s62-jessica-capstone-repo-cake.vercel.app"
   ],
   credentials: true
 }));
