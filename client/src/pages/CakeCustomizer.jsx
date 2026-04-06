@@ -139,16 +139,17 @@ export default function CakeCustomizer({ onBack, onAddToCart }) {
                   <button
                     key={item.type}
                     onClick={() => {
-  setSelectedTopping(item.type);
-
-  setTimeout(() => {
-    setToppings((prev) => [
-      ...prev,
-      { type: item.type, id: Date.now() }
-    ]);
-  }, 150);
-}}
-                    className="topping-btn flex flex-col items-center justify-center p-4 text-[#333]"
+                    setToppings((prev) => [
+                      ...prev,
+                  {
+                    id: Date.now(),
+                    type: item.type
+                  }
+          ]); 
+        }}
+                    className={`topping-btn flex flex-col items-center justify-center p-4 ${
+                      selectedTopping === item.type ? "bg-pink-100" : ""
+                    }`}
                   >
                     <span className="text-xl">{item.icon}</span>
                     <span className="text-sm mt-1 capitalize">
@@ -200,37 +201,24 @@ export default function CakeCustomizer({ onBack, onAddToCart }) {
         {/* RIGHT PANEL */}
         <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-white to-pink-50">
 
-  <div
-    className="preview-3d scale-110 interactive-cake"
-    onMouseMove={(e) => {
-      const rect = e.currentTarget.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+          <div
+            className="preview-3d scale-110"
+            style={{
+              cursor: selectedTopping ? "crosshair" : "default"
+            }}
+          >
+            <CakeScene
+              layers={layers}
+              frostingColor={frostingColor}
+              sideFrosting={sideFrosting}
+              toppings={toppings}
+              setToppings={setToppings}
+              selectedTopping={selectedTopping}
+              setSelectedTopping={setSelectedTopping}
+            />
+          </div>
 
-      const rotateX = -(y - rect.height / 2) / 20;
-      const rotateY = (x - rect.width / 2) / 20;
-
-      e.currentTarget.style.transform = `
-        scale(1.1)
-        rotateX(${rotateX}deg)
-        rotateY(${rotateY}deg)
-      `;
-    }}
-    onMouseLeave={(e) => {
-      e.currentTarget.style.transform = "scale(1.1) rotateX(0deg) rotateY(0deg)";
-    }}
-  >
-    <CakeScene
-      layers={layers}
-      frostingColor={frostingColor}
-      sideFrosting={sideFrosting}
-      toppings={toppings}
-      setToppings={setToppings}
-      selectedTopping={selectedTopping}
-    />
-  </div>
-
-</div>
+        </div>
 
       </div>
     </div>

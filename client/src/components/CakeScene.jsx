@@ -8,7 +8,8 @@ export default function CakeScene({
   sideFrosting = false,
   toppings = [],
   setToppings,
-  selectedTopping
+  selectedTopping,
+  setSelectedTopping
 }) {
 
   return (
@@ -17,10 +18,32 @@ export default function CakeScene({
       <Canvas
         shadows
         camera={{ position: [0, 8, 18], fov: 50 }}
+
+        // 🔥 FINAL FIX (safe click handling)
+        onPointerDown={(event) => {
+          if (!selectedTopping) return;
+
+          // ✅ prevent crash when clicking empty space
+          if (!event.point) return;
+
+          const { x, y, z } = event.point;
+
+          setToppings((prev) => [
+            ...prev,
+            {
+              id: Date.now(),
+              type: selectedTopping,
+              position: [x, y + 0.2, z]
+            }
+          ]);
+
+          if (setSelectedTopping) {
+            setSelectedTopping(null);
+          }
+        }}
       >
 
         {/* Lighting */}
-
         <ambientLight intensity={0.7} />
 
         <directionalLight
@@ -35,27 +58,24 @@ export default function CakeScene({
         />
 
         {/* Cake */}
-
         <CakeModel
           layers={layers}
           frostingColor={frostingColor}
           sideFrosting={sideFrosting}
           toppings={toppings}
-          setToppings={setToppings}
-          selectedTopping={selectedTopping}
         />
 
         {/* Platform */}
-
         <mesh position={[0, -0.4, 0]} receiveShadow>
           <cylinderGeometry args={[12, 12, 0.8, 64]} />
           <meshStandardMaterial color="#d9d9d9" />
         </mesh>
 
-        {/* Camera Controls */}
-
+        {/* Controls */}
         <OrbitControls
           enablePan={false}
+          enableRotate={!selectedTopping}
+          enableZoom={true}
           minDistance={4}
           maxDistance={30}
           maxPolarAngle={Math.PI / 2.2}

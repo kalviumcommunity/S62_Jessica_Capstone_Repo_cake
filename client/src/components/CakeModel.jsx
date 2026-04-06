@@ -2,9 +2,7 @@ export default function CakeModel({
   layers = [],
   frostingColor,
   sideFrosting = false,
-  toppings = [],
-  setToppings,
-  selectedTopping
+  toppings = []
 }) {
 
   const getColor = (flavor) => {
@@ -18,25 +16,8 @@ export default function CakeModel({
   const frostingHeight = 0.4;
   const cakeHeight = layers.length * layerHeight;
 
-  // 🟢 Handle clicking on cake
-  const handleCakeClick = (event) => {
-
-    if (!selectedTopping || !setToppings) return;
-
-    event.stopPropagation();
-
-    const { x, z } = event.point;
-
-    const y = cakeHeight + frostingHeight + 0.2;
-
-    setToppings(prev => [
-      ...prev,
-      {
-        type: selectedTopping,
-        position: [x, y, z]
-      }
-    ]);
-  };
+  // 🔥 Better radius control
+  const baseRadius = 1.2;
 
   return (
     <group>
@@ -49,17 +30,10 @@ export default function CakeModel({
 
       {/* Cake layers */}
       {layers.map((layer, index) => {
-
         const y = index * layerHeight + layerHeight / 2;
 
         return (
-          <mesh
-            key={index}
-            position={[0, y, 0]}
-            castShadow
-            receiveShadow
-            onClick={handleCakeClick}
-          >
+          <mesh key={index} position={[0, y, 0]} castShadow receiveShadow>
             <cylinderGeometry args={[3, 3, layerHeight, 64]} />
             <meshStandardMaterial
               color={getColor(layer.flavor)}
@@ -67,19 +41,12 @@ export default function CakeModel({
             />
           </mesh>
         );
-
       })}
 
       {/* Side frosting */}
       {sideFrosting && (
-        <mesh
-          position={[0, cakeHeight / 2, 0]}
-          castShadow
-          onClick={handleCakeClick}
-        >
-          <cylinderGeometry
-            args={[3.05, 3.05, cakeHeight, 64, 1, true]}
-          />
+        <mesh position={[0, cakeHeight / 2, 0]} castShadow>
+          <cylinderGeometry args={[3.05, 3.05, cakeHeight, 64, 1, true]} />
           <meshStandardMaterial
             color={frostingColor}
             side={2}
@@ -92,7 +59,6 @@ export default function CakeModel({
       <mesh
         position={[0, cakeHeight + frostingHeight / 2, 0]}
         castShadow
-        onClick={handleCakeClick}
       >
         <cylinderGeometry args={[3.05, 3.05, frostingHeight, 64]} />
         <meshStandardMaterial
@@ -101,15 +67,29 @@ export default function CakeModel({
         />
       </mesh>
 
-      {/* Render toppings */}
+      {/* 🎂 TOPPINGS */}
       {toppings.map((topping, index) => {
 
-        const [x, y, z] = topping.position || [0,0,0];
+        // 🔥 Smart placement
+        let x = 0;
+        let z = 0;
+
+        if (toppings.length === 1) {
+          x = 0;
+          z = 0;
+        } else {
+          const angle = (index / toppings.length) * Math.PI * 2;
+          x = baseRadius * Math.cos(angle);
+          z = baseRadius * Math.sin(angle);
+        }
+
+        // 🔥 ALWAYS ABOVE CAKE (visible)
+        const y = cakeHeight + frostingHeight + 0.35;
 
         if (topping.type === "strawberry") {
           return (
-            <mesh key={index} position={[x, y, z]}>
-              <sphereGeometry args={[0.28, 32, 32]} />
+            <mesh key={topping.id} position={[x, y, z]}>
+              <sphereGeometry args={[0.3, 32, 32]} />
               <meshStandardMaterial color="#d62828" />
             </mesh>
           );
@@ -117,8 +97,8 @@ export default function CakeModel({
 
         if (topping.type === "chocolate") {
           return (
-            <mesh key={index} position={[x, y, z]}>
-              <boxGeometry args={[0.35, 0.15, 0.35]} />
+            <mesh key={topping.id} position={[x, y, z]}>
+              <boxGeometry args={[0.4, 0.2, 0.4]} />
               <meshStandardMaterial color="#3b1f16" />
             </mesh>
           );
@@ -126,33 +106,30 @@ export default function CakeModel({
 
         if (topping.type === "candle") {
           return (
-            <group key={index} position={[x, y, z]}>
-
-              <mesh position={[0,0.2,0]}>
-                <cylinderGeometry args={[0.08,0.08,0.6,16]} />
-                <meshStandardMaterial color="white"/>
+            <group key={topping.id} position={[x, y, z]}>
+              <mesh position={[0, 0.3, 0]}>
+                <cylinderGeometry args={[0.08, 0.08, 0.7, 16]} />
+                <meshStandardMaterial color="white" />
               </mesh>
 
-              <mesh position={[0,0.55,0]}>
-                <sphereGeometry args={[0.07,16,16]} />
-                <meshStandardMaterial color="orange"/>
+              <mesh position={[0, 0.75, 0]}>
+                <sphereGeometry args={[0.08, 16, 16]} />
+                <meshStandardMaterial color="orange" />
               </mesh>
-
             </group>
           );
         }
 
         if (topping.type === "candy") {
           return (
-            <mesh key={index} position={[x, y, z]}>
-              <sphereGeometry args={[0.2, 32, 32]} />
+            <mesh key={topping.id} position={[x, y, z]}>
+              <sphereGeometry args={[0.25, 32, 32]} />
               <meshStandardMaterial color="#ff66c4" />
             </mesh>
           );
         }
 
         return null;
-
       })}
 
     </group>
